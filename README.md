@@ -33,7 +33,7 @@ The platform is powered by a sophisticated smart contract that handles:
 ## Demo Resources
 
 ### Live Demo
-Experience the platform: [https://privacy-5wtgfm4rt-bellaschumms-projects.vercel.app/](https://privacy-5wtgfm4rt-bellaschumms-projects.vercel.app/)
+Experience the platform: [https://privacy-qa.vercel.app/](https://privacy-qa.vercel.app/)
 
 ### Video Demonstration
 A comprehensive demo video showcasing the platform's features and functionality is available in the project files (`Video Demonstration.mp4`).
