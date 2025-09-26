@@ -1,0 +1,23 @@
+{
+  "name": "privacy-qa-platform",
+  "version": "1.0.0",
+  "description": "Anonymous Q&A platform with FHE privacy protection",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx http-server . -p 3000 -c-1 --cors",
+    "build": "echo 'Static files ready for deployment'",
+    "start": "npx http-server . -p 8080 -c-1 --cors"
+  },
+  "keywords": [
+    "blockchain",
+    "ethereum",
+    "privacy",
+    "fhe",
+    "qa",
+    "anonymous"
+  ],
+  "author": "Privacy Q&A Platform",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {}
+}

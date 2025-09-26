@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Knowledge Q&A Platform</title>
+    <link rel="stylesheet" href="./public/css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Privacy Knowledge Q&A</h1>
+            <div class="header-actions">
+                <button id="connectWallet" class="btn btn-primary">Connect Wallet</button>
+                <div id="userInfo" class="user-info hidden">
+                    <span id="userAddress"></span>
+                    <span id="userReputation"></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <nav class="nav-tabs">
+        <div class="container">
+            <button class="tab-btn active" data-tab="questions">Questions</button>
+            <button class="tab-btn" data-tab="ask">Ask Question</button>
+            <button class="tab-btn" data-tab="profile">Profile</button>
+            <button class="tab-btn" data-tab="admin">Admin</button>
+        </div>
+    </nav>
+
+    <main class="container">
+        <!-- Questions Tab -->
+        <div id="questions" class="tab-content active">
+            <div class="filters">
+                <select id="categoryFilter">
+                    <option value="">All Categories</option>
+                    <option value="Technology">Technology</option>
+                    <option value="Science">Science</option>
+                    <option value="Business">Business</option>
+                    <option value="Health">Health</option>
+                    <option value="Education">Education</option>
+                    <option value="Privacy">Privacy</option>
+                    <option value="Security">Security</option>
+                </select>
+                <button id="refreshQuestions" class="btn btn-secondary">Refresh</button>
+            </div>
+            <div id="questionsList" class="questions-list">
+                <!-- Questions will be loaded here -->
+            </div>
+        </div>
+
+        <!-- Ask Question Tab -->
+        <div id="ask" class="tab-content">
+            <form id="askQuestionForm" class="form">
+                <div class="form-group">
+                    <label for="questionCategory">Category:</label>
+                    <select id="questionCategory" required>
+                        <option value="">Select Category</option>
+                        <option value="Technology">Technology</option>
+                        <option value="Science">Science</option>
+                        <option value="Business">Business</option>
+                        <option value="Health">Health</option>
+                        <option value="Education">Education</option>
+                        <option value="Privacy">Privacy</option>
+                        <option value="Security">Security</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="questionContent">Question Content:</label>
+                    <textarea id="questionContent" rows="6" placeholder="Enter your question here..." required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="reputationRequired">Minimum Reputation Required:</label>
+                    <input type="number" id="reputationRequired" min="0" max="100" value="0">
+                </div>
+                <div class="form-group">
+                    <label for="bounty">Bounty (ETH):</label>
+                    <input type="number" id="bounty" step="0.001" min="0" placeholder="0.000">
+                </div>
+                <button type="submit" class="btn btn-primary">Post Question</button>
+            </form>
+        </div>
+
+        <!-- Profile Tab -->
+        <div id="profile" class="tab-content">
+            <div class="profile-section">
+                <h3>User Profile</h3>
+                <div id="profileInfo">
+                    <p>Connect your wallet to view profile information</p>
+                </div>
+                <div class="profile-actions">
+                    <button id="initializeUser" class="btn btn-primary hidden">Initialize Profile</button>
+                    <div class="form-group">
+                        <label for="specialty">Add Specialty:</label>
+                        <input type="text" id="specialty" placeholder="Enter your specialty">
+                        <button id="addSpecialty" class="btn btn-secondary">Add</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="profile-section">
+                <h3>My Questions</h3>
+                <div id="myQuestions" class="questions-list">
+                    <!-- User's questions will be loaded here -->
+                </div>
+            </div>
+
+            <div class="profile-section">
+                <h3>My Answers</h3>
+                <div id="myAnswers" class="answers-list">
+                    <!-- User's answers will be loaded here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Admin Tab -->
+        <div id="admin" class="tab-content">
+            <div class="admin-section">
+                <h3>Admin Panel</h3>
+                <div class="form-group">
+                    <label for="promoteUser">Promote User to Expert:</label>
+                    <input type="text" id="promoteUser" placeholder="Enter user address">
+                    <button id="promoteToExpert" class="btn btn-primary">Promote</button>
+                </div>
+                <div class="form-group">
+                    <label for="verifyAnswer">Verify Answer:</label>
+                    <input type="number" id="verifyAnswerId" placeholder="Answer ID">
+                    <select id="verifyStatus">
+                        <option value="true">Verified</option>
+                        <option value="false">Not Verified</option>
+                    </select>
+                    <button id="verifyAnswerBtn" class="btn btn-primary">Update</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Question Detail Modal -->
+    <div id="questionModal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="questionDetail">
+                <!-- Question details and answers will be loaded here -->
+            </div>
+            <div id="answerForm" class="form">
+                <h3>Submit Answer</h3>
+                <textarea id="answerContent" rows="4" placeholder="Enter your answer here..."></textarea>
+                <button id="submitAnswer" class="btn btn-primary">Submit Answer</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Indicator -->
+    <div id="loading" class="loading hidden">
+        <div class="spinner"></div>
+        <p>Processing transaction...</p>
+    </div>
+
+    <!-- Status Messages -->
+    <div id="statusMessage" class="status-message hidden">
+        <span id="statusText"></span>
+        <button id="closeStatus">&times;</button>
+    </div>
+
+    <script src="./public/js/app.js"></script>
+</body>
+</html>
